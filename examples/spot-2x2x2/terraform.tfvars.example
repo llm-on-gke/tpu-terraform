@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and edit.
+project_id = "my-project"
+zone       = "us-central1-c"
+name       = "tpu7x-spot-2x2x2"
+topology   = "2x2x2"
+
+# STOP keeps the (stopped) hosts around after preemption; DELETE lets the MIG
+# recreate the whole slice when capacity returns.
+instance_termination_action = "STOP"
+
+network            = "default"
+subnetwork         = null
+enable_external_ip = false
+wait_for_instances = true

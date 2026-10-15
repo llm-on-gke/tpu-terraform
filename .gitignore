@@ -1,0 +1,17 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+terraform.tfstate.d/
+.terraform.tfstate.lock.info
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# local variable files (keep *.example)
+terraform.tfvars
+*.auto.tfvars

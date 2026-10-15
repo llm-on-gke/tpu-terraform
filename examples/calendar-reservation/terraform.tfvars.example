@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars and edit.
+project_id = "my-project"
+zone       = "us-central1-c" # zone of the reservation
+name       = "tpu7x-cal"
+topology   = "4x4x4" # 64 chips → 16 hosts; must fit in the reservation
+
+# Auto-created reservation of your approved calendar-mode future reservation
+# (defaults to the future reservation's name):
+#   gcloud compute future-reservations describe FR --zone ZONE --format='value(reservationName)'
+reservation_name = "my-tpu7x-calendar-res"
+
+# Phase 1 (before start_time): false → empty MIG. Phase 2: true → full slice.
+activate_slice = false
+
+network    = "default"
+subnetwork = null
