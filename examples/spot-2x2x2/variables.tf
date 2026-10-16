@@ -57,8 +57,27 @@ variable "boot_disk_size_gb" {
   default     = 100
 }
 
+variable "source_image" {
+  description = "Boot image or image family for the TPU VMs (e.g. default Ubuntu accelerator image or a custom Debian 12 TPU image)."
+  type        = string
+  default     = "projects/ubuntu-os-accelerator-images/global/images/family/ubuntu-accel-2404-amd64-tpu-tpu7x"
+}
+
+variable "metadata" {
+  description = "Additional instance metadata key/value pairs (e.g. user-data for cloud-init)."
+  type        = map(string)
+  default     = {}
+}
+
+variable "startup_script" {
+  description = "Optional startup script content."
+  type        = string
+  default     = null
+}
+
 variable "wait_for_instances" {
   description = "Wait for the MIG to become STABLE during apply."
   type        = bool
   default     = true
 }
+

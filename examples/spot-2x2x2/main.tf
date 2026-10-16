@@ -43,7 +43,10 @@ module "tpu_slice" {
   enable_external_ip = var.enable_external_ip
   network_tags       = var.network_tags
 
+  source_image      = var.source_image
   boot_disk_size_gb = var.boot_disk_size_gb
+  metadata          = var.metadata
+  startup_script    = var.startup_script
 
   labels = {
     environment = "test"

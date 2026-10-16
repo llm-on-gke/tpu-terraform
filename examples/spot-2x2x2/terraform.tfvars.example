@@ -12,3 +12,7 @@ network            = "default"
 subnetwork         = null
 enable_external_ip = false
 wait_for_instances = true
+
+# Optional: override with a custom OS image (see ../../custom_image.md)
+# source_image = "projects/my-project/global/images/family/debian-12-tpu7x"
+

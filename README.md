@@ -12,6 +12,7 @@ and
 
 ```
 hrt-terraform/
+├── custom_image.md                 # tutorial: custom Debian 12 OS image for TPU7x
 ├── modules/
 │   └── tpu7x-mig-slice/            # instance template + workload policy + MIG  (any topology)
 └── examples/
@@ -47,6 +48,8 @@ terraform apply -var project_id=YOUR_PROJECT -var zone=us-central1-c
 terraform output list_instances_command
 terraform destroy -var project_id=YOUR_PROJECT -var zone=us-central1-c
 ```
+
+To use a custom **Debian 12** OS image instead of the default Ubuntu accelerator image, see [custom_image.md](./custom_image.md) and pass `-var source_image=projects/YOUR_PROJECT/global/images/family/debian-12-tpu7x`.
 
 ## Quick start — existing DWS calendar reservation
 
