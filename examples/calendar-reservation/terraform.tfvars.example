@@ -2,7 +2,9 @@
 project_id = "my-project"
 zone       = "us-central1-c" # zone of the reservation
 name       = "tpu7x-cal"
-topology   = "4x4x4" # 64 chips → 16 hosts; must fit in the reservation
+# Can match the full reservation (e.g. "4x4x4" = 64 chips / 16 hosts) or a
+# smaller sub-slice within it (e.g. "2x2x2" = 8 chips / 2 hosts, "2x2x4" = 16 chips / 4 hosts, "2x4x4" = 32 chips / 8 hosts)
+topology = "4x4x4"
 
 # Auto-created reservation of your approved calendar-mode future reservation
 # (defaults to the future reservation's name):

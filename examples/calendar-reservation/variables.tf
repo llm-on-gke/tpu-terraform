@@ -16,7 +16,7 @@ variable "name" {
 }
 
 variable "topology" {
-  description = "TPU7x slice topology, e.g. 2x2x2 (8 chips), 4x4x4 (64 chips), 8x8x8 (512 chips). Must fit in the reservation."
+  description = "TPU7x slice topology, e.g. 2x2x2 (8 chips), 2x2x4 (16 chips), 2x4x4 (32 chips), 4x4x4 (64 chips), 8x8x8 (512 chips). Can match the full reservation or a smaller sub-slice that fits within the reservation."
   type        = string
   default     = "4x4x4"
 }
