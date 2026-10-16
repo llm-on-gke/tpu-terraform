@@ -591,3 +591,31 @@ terraform destroy \
   -var name="tpu7x-spot-deb12" \
   -var source_image="projects/${PROJECT_ID}/global/images/family/${CUSTOM_IMAGE_FAMILY}"
 ```
+
+### Using with DWS Calendar Reservations (`examples/calendar-reservation`)
+
+You can also pass `source_image` (along with optional `boot_disk_size_gb`,
+`metadata`, and `startup_script`) to [`examples/calendar-reservation`](./examples/calendar-reservation):
+
+```bash
+cd examples/calendar-reservation
+terraform init
+
+# Phase 1 (before start_time): pre-create the MIG at size 0
+terraform apply \
+  -var project_id="${PROJECT_ID}" \
+  -var zone="${ZONE}" \
+  -var topology="4x4x4" \
+  -var reservation_name="${RESERVATION_NAME}" \
+  -var source_image="projects/${PROJECT_ID}/global/images/family/${CUSTOM_IMAGE_FAMILY}"
+
+# Phase 2 (once the reservation window opens): scale up the slice
+terraform apply \
+  -var project_id="${PROJECT_ID}" \
+  -var zone="${ZONE}" \
+  -var topology="4x4x4" \
+  -var reservation_name="${RESERVATION_NAME}" \
+  -var source_image="projects/${PROJECT_ID}/global/images/family/${CUSTOM_IMAGE_FAMILY}" \
+  -var activate_slice=true
+```
+

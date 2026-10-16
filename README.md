@@ -73,6 +73,7 @@ To use a custom **Debian 12** OS image instead of the default Ubuntu accelerator
    terraform apply -var project_id=YOUR_PROJECT -var zone=ZONE -var topology=4x4x4 -var reservation_name=RES_NAME
    # once the window is open: bring up the slice
    terraform apply -var project_id=YOUR_PROJECT -var zone=ZONE -var topology=4x4x4 -var reservation_name=RES_NAME -var activate_slice=true
+   # optional: pass -var source_image=projects/YOUR_PROJECT/global/images/family/debian-12-tpu7x for a custom Debian 12 image (see custom_image.md)
    ```
 
 Or straight from the module:

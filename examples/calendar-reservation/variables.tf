@@ -62,3 +62,28 @@ variable "network_tags" {
   type        = list(string)
   default     = []
 }
+
+variable "boot_disk_size_gb" {
+  description = "Boot disk size (Hyperdisk Balanced)."
+  type        = number
+  default     = 100
+}
+
+variable "source_image" {
+  description = "Boot image or image family for the TPU VMs (e.g. default Ubuntu accelerator image or a custom Debian 12 TPU image)."
+  type        = string
+  default     = "projects/ubuntu-os-accelerator-images/global/images/family/ubuntu-accel-2404-amd64-tpu-tpu7x"
+}
+
+variable "metadata" {
+  description = "Additional instance metadata key/value pairs (e.g. user-data for cloud-init)."
+  type        = map(string)
+  default     = {}
+}
+
+variable "startup_script" {
+  description = "Optional startup script content."
+  type        = string
+  default     = null
+}
+

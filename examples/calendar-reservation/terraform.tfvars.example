@@ -14,3 +14,7 @@ activate_slice = false
 
 network    = "default"
 subnetwork = null
+
+# Optional: override with a custom OS image (see ../../custom_image.md)
+# source_image = "projects/my-project/global/images/family/debian-12-tpu7x"
+
