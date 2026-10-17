@@ -232,6 +232,72 @@ variable "boot_disk_provisioned_throughput" {
 }
 
 #---------------------------------------
+# Non-boot data disks (Hyperdisk Balanced per VM)
+#---------------------------------------
+variable "data_disk_count" {
+  description = <<-EOT
+    Number of non-boot read-write Hyperdisk Balanced data disks to create and
+    attach per VM from the instance template (0–63; tpu7x-standard-4t supports
+    up to 64 total Hyperdisk volumes including the boot disk). Each VM in the
+    slice receives its own independent read-write data disk(s).
+  EOT
+  type        = number
+  default     = 0
+
+  validation {
+    condition     = var.data_disk_count >= 0 && var.data_disk_count <= 63 && floor(var.data_disk_count) == var.data_disk_count
+    error_message = "data_disk_count must be an integer between 0 and 63."
+  }
+}
+
+variable "data_disk_type" {
+  description = "Disk type for non-boot per-VM data disks. Defaults to hyperdisk-balanced."
+  type        = string
+  default     = "hyperdisk-balanced"
+}
+
+variable "data_disk_size_gb" {
+  description = <<-EOT
+    Size in GiB for each non-boot Hyperdisk Balanced data disk (4–65536 GiB).
+    Note: Hyperdisk Balanced allows up to 500 IOPS per GiB (capped at 160,000
+    IOPS per disk), so at least 320 GiB is required to provision 160,000 IOPS.
+  EOT
+  type        = number
+  default     = 500
+
+  validation {
+    condition     = var.data_disk_size_gb >= 4 && var.data_disk_size_gb <= 65536
+    error_message = "data_disk_size_gb must be between 4 and 65536 GiB."
+  }
+}
+
+variable "data_disk_provisioned_iops" {
+  description = <<-EOT
+    Optional provisioned IOPS for each non-boot Hyperdisk Balanced data disk
+    (null = API default). Up to min(500 * size_gb, 160,000) IOPS per disk;
+    tpu7x-standard-4t caps total VM performance at 320,000 IOPS across all disks.
+  EOT
+  type        = number
+  default     = null
+}
+
+variable "data_disk_provisioned_throughput" {
+  description = <<-EOT
+    Optional provisioned throughput (MiB/s) for each non-boot Hyperdisk Balanced
+    data disk (null = API default). Up to min(2,400, provisioned_iops / 4) MiB/s
+    per disk; tpu7x-standard-4t caps total VM throughput at 7,200 MiB/s across all disks.
+  EOT
+  type        = number
+  default     = null
+}
+
+variable "data_disk_auto_delete" {
+  description = "Whether non-boot per-VM data disks are automatically deleted when the VM is deleted."
+  type        = bool
+  default     = true
+}
+
+#---------------------------------------
 # Networking
 #---------------------------------------
 variable "network" {

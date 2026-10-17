@@ -78,6 +78,22 @@ resource "google_compute_instance_template" "tpu" {
     provisioned_throughput = var.boot_disk_provisioned_throughput
   }
 
+  # Optional per-VM non-boot read-write Hyperdisk Balanced data disks.
+  dynamic "disk" {
+    for_each = range(var.data_disk_count)
+    content {
+      boot                   = false
+      auto_delete            = var.data_disk_auto_delete
+      device_name            = "data-disk-${disk.value}"
+      disk_type              = var.data_disk_type
+      disk_size_gb           = var.data_disk_size_gb
+      mode                   = "READ_WRITE"
+      type                   = "PERSISTENT"
+      provisioned_iops       = var.data_disk_provisioned_iops
+      provisioned_throughput = var.data_disk_provisioned_throughput
+    }
+  }
+
   network_interface {
     network            = var.network
     subnetwork         = var.subnetwork

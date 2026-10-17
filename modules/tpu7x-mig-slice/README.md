@@ -143,6 +143,10 @@ shows the underlying `queuedResources.insert` operations and their error codes.
 | `max_run_duration_seconds` | number | `null` | Required for `FLEX_START` |
 | `source_image` | string | TPU7x Ubuntu 24.04 family | Boot image |
 | `boot_disk_type` / `boot_disk_size_gb` | string / number | `hyperdisk-balanced` / `100` | Boot disk |
+| `data_disk_count` | number | `0` | Number of non-boot read-write Hyperdisk Balanced disks per VM (`0`–`63`) |
+| `data_disk_type` / `data_disk_size_gb` | string / number | `hyperdisk-balanced` / `500` | Non-boot per-VM data disk type & size (GiB) |
+| `data_disk_provisioned_iops` / `data_disk_provisioned_throughput` | number | `null` | Optional provisioned IOPS / throughput (MiB/s) per non-boot data disk |
+| `data_disk_auto_delete` | bool | `true` | Auto-delete non-boot data disks with the VM |
 | `network` / `subnetwork` / `subnetwork_project` | string | `"default"` / `null` / `null` | Networking |
 | `nic_type` | string | `"GVNIC"` | vNIC type |
 | `enable_external_ip` | bool | `false` | External IP per host |
@@ -158,5 +162,6 @@ shows the underlying `queuedResources.insert` operations and their error codes.
 
 `topology`, `chip_count`, `vm_count`, `target_size`, `machine_type`, `provisioning_model`,
 `instance_template_self_link`, `instance_template_name`, `workload_policy_self_link`,
-`mig_name`, `mig_self_link`, `instance_group`, `mig_type`, `location`, `list_instances_command`.
+`mig_name`, `mig_self_link`, `instance_group`, `mig_type`, `location`, `list_instances_command`,
+`data_disk_count`, `data_disk_size_gb`.
 <!-- END_TF_DOCS -->

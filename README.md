@@ -51,6 +51,18 @@ terraform destroy -var project_id=YOUR_PROJECT -var zone=us-central1-c
 
 To use a custom **Debian 12** OS image instead of the default Ubuntu accelerator image, see [custom_image.md](./custom_image.md) and pass `-var source_image=projects/YOUR_PROJECT/global/images/family/debian-12-tpu7x`.
 
+To attach per-VM non-boot read-write **Hyperdisk Balanced** data disks, pass `data_disk_count` (and optionally `data_disk_size_gb`, `data_disk_provisioned_iops`, and `data_disk_provisioned_throughput`):
+
+```bash
+terraform apply \
+  -var project_id=YOUR_PROJECT \
+  -var zone=us-central1-c \
+  -var data_disk_count=2 \
+  -var data_disk_size_gb=500 \
+  -var data_disk_provisioned_iops=150000 \
+  -var data_disk_provisioned_throughput=2400
+```
+
 ## Quick start — existing DWS calendar reservation
 
 1. Create / get a calendar-mode future reservation approved (console or

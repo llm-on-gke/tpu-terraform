@@ -86,3 +86,13 @@ output "list_instances_command" {
   description = "gcloud command that lists the slice's VMs and their current actions."
   value       = local.list_instances_cmd
 }
+
+output "data_disk_count" {
+  description = "Number of non-boot Hyperdisk Balanced data disks attached per VM."
+  value       = var.data_disk_count
+}
+
+output "data_disk_size_gb" {
+  description = "Size in GiB of each non-boot Hyperdisk Balanced data disk (0 when data_disk_count = 0)."
+  value       = var.data_disk_count > 0 ? var.data_disk_size_gb : 0
+}

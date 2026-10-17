@@ -10,6 +10,8 @@ output "slice" {
     mig_name           = module.tpu_slice.mig_name
     instance_template  = module.tpu_slice.instance_template_name
     workload_policy    = module.tpu_slice.workload_policy_self_link
+    data_disk_count    = module.tpu_slice.data_disk_count
+    data_disk_size_gb  = module.tpu_slice.data_disk_size_gb
   }
 }
 

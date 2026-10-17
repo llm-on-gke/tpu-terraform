@@ -57,6 +57,30 @@ variable "boot_disk_size_gb" {
   default     = 100
 }
 
+variable "data_disk_count" {
+  description = "Number of non-boot read-write Hyperdisk Balanced data disks to attach per VM (0–63)."
+  type        = number
+  default     = 0
+}
+
+variable "data_disk_size_gb" {
+  description = "Size in GiB of each non-boot Hyperdisk Balanced data disk (>= 320 GiB required for 160,000 IOPS max per disk)."
+  type        = number
+  default     = 500
+}
+
+variable "data_disk_provisioned_iops" {
+  description = "Optional provisioned IOPS per non-boot Hyperdisk Balanced disk (up to 160,000 per disk; 320,000 VM total cap on tpu7x-standard-4t)."
+  type        = number
+  default     = null
+}
+
+variable "data_disk_provisioned_throughput" {
+  description = "Optional provisioned throughput (MiB/s) per non-boot Hyperdisk Balanced disk (up to 2,400 MiB/s per disk; 7,200 MiB/s VM total cap on tpu7x-standard-4t)."
+  type        = number
+  default     = null
+}
+
 variable "source_image" {
   description = "Boot image or image family for the TPU VMs (e.g. default Ubuntu accelerator image or a custom Debian 12 TPU image)."
   type        = string

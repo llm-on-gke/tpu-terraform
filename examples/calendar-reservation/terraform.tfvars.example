@@ -20,3 +20,10 @@ subnetwork = null
 # Optional: override with a custom OS image (see ../../custom_image.md)
 # source_image = "projects/my-project/global/images/family/debian-12-tpu7x"
 
+# Optional: attach non-boot read-write Hyperdisk Balanced data disks per VM
+# (tpu7x-standard-4t caps total VM performance at 320,000 IOPS and 7,200 MiB/s across all disks)
+# data_disk_count                  = 3
+# data_disk_size_gb                = 500
+# data_disk_provisioned_iops       = 105000
+# data_disk_provisioned_throughput = 2400
+

@@ -9,6 +9,8 @@ output "slice" {
     provisioning_model = module.tpu_slice.provisioning_model
     zone               = module.tpu_slice.location
     mig_name           = module.tpu_slice.mig_name
+    data_disk_count    = module.tpu_slice.data_disk_count
+    data_disk_size_gb  = module.tpu_slice.data_disk_size_gb
     list_instances     = module.tpu_slice.list_instances_command
   }
 }
