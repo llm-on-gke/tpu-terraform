@@ -70,12 +70,12 @@ variable "regional_zones" {
 #---------------------------------------
 variable "topology" {
   description = <<-EOT
-    TPU7x (Ironwood) 3D slice topology, e.g. "2x2x2", "4x4x4", "8x8x16".
+    TPU7x (Ironwood) 3D slice topology, e.g. "2x2x1", "2x2x2", "4x4x4", "8x8x16".
     Determines the MIG size: each tpu7x-standard-4t host has 4 chips, so
-    VM count = (x*y*z)/4. Multi-host topologies supported by TPU7x:
-    2x2x2 (8 chips, 2 VMs), 2x2x4 (16, 4), 2x4x4 (32, 8), 4x4x4 (64, 16),
-    4x4x8 (128, 32), 4x8x8 (256, 64), 8x8x8 (512, 128), 8x8x16 (1024, 256),
-    8x16x16 (2048, 512).
+    VM count = (x*y*z)/4. Topologies supported by TPU7x:
+    2x2x1 (4 chips, 1 VM), 2x2x2 (8 chips, 2 VMs), 2x2x4 (16, 4), 2x4x4 (32, 8),
+    4x4x4 (64, 16), 4x4x8 (128, 32), 4x8x8 (256, 64), 8x8x8 (512, 128),
+    8x8x16 (1024, 256), 8x16x16 (2048, 512).
   EOT
   type        = string
 
@@ -88,9 +88,9 @@ variable "topology" {
     condition = (
       can(regex("^[0-9]+x[0-9]+x[0-9]+$", var.topology)) &&
       (tonumber(split("x", var.topology)[0]) * tonumber(split("x", var.topology)[1]) * tonumber(split("x", var.topology)[2])) % 4 == 0 &&
-      (tonumber(split("x", var.topology)[0]) * tonumber(split("x", var.topology)[1]) * tonumber(split("x", var.topology)[2])) >= 8
+      (tonumber(split("x", var.topology)[0]) * tonumber(split("x", var.topology)[1]) * tonumber(split("x", var.topology)[2])) >= 4
     )
-    error_message = "topology chip count (x*y*z) must be a multiple of 4 and >= 8 for a multi-host slice (2x2x1 is single-host)."
+    error_message = "topology chip count (x*y*z) must be a multiple of 4 and >= 4 (e.g. 2x2x1 for single-host or 2x2x2+ for multi-host)."
   }
 }
 

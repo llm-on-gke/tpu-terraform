@@ -50,6 +50,7 @@ All TPU7x shapes use the 4-chip `tpu7x-standard-4t` host (224 vCPU, 960 GB RAM, 
 
 | Topology | Chips | Hosts / VMs | Cubes |
 |----------|------:|------------:|------:|
+| 2x2x1 | 4 | 1 | 1/16 |
 | 2x2x2 | 8 | 2 | 1/8 |
 | 2x2x4 | 16 | 4 | 1/4 |
 | 2x4x4 | 32 | 8 | 1/2 |
@@ -60,7 +61,7 @@ All TPU7x shapes use the 4-chip `tpu7x-standard-4t` host (224 vCPU, 960 GB RAM, 
 | 8x8x16 | 1024 | 256 | 16 |
 | 8x16x16 | 2048 | 512 | 32 |
 
-Any `AxBxC` whose product is a multiple of 4 and ≥ 8 passes module validation;
+Any `AxBxC` whose product is a multiple of 4 and ≥ 4 passes module validation;
 the API rejects shapes TPU7x does not support.
 
 ### Zonal vs regional MIG
